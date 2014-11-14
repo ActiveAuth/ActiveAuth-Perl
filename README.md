@@ -49,6 +49,7 @@ ActiveAuth’s JavaScript handles the setup and communication between the IFRAME
   var ACASecret = '$secret';
   var ACAServer = '$server';
   var ACAAccount = '$iaccount';
+  var ACAAction = '';
 </script>
 <script type="text/javascript" src="js/activeauth.js"></script>
 ```
@@ -58,3 +59,21 @@ Where:
 * `$secret` is the signature generated in the previous step
 * `$server` is the address of ActiveAuth server (`activeauth.me`)
 * `$iaccount` is the e-mail of the integration account, whch owns the integration (NOT the authenticated user) in the ActiveAuth service control panel.
+* In the `ACAAction` variable you can specify the FORM action to POST to where the second-step authentication is to be verified.
+
+### 4. Verify the response
+
+After the user authenticates (e.g. via mobile push, phone call, SMS passcode, etc.) the IFRAME will generate a signed response and send it back to the JavaScript which will POST to `ACAAction` specified in the previous step. Your server-side code should then call `ActiveAuth::verify()` to verify that the signed response is legitimate:
+
+```
+my $response = $q->param("2fa-verify");
+my $status = ActiveAuth::verify($response, $skey, $akey);
+```
+
+Where:
+
+* `$response` is the signed response received from the ActiveAuth server
+* `$skey` is the server key you get from ActiveAuth's control panel
+* `$akey` which is the application key you generated
+
+If sucessfully authenticated the returned value (`$status`) should be the e-mail of the authenticated user. Otherwise the method will return `undef`. After getting user's e-mail, you can create your application session for the sepcified user.
