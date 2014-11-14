@@ -10,9 +10,9 @@ Package:
 * `js` - ActiveAuth javascript library, to be hosted by your webserver.
 * `ActiveAuth.pm` - ActiveAuth Perl SDK to be integrated with your web application
 
-# Usage
+## Usage
 
-## 1. Generate Application key:
+### 1. Generate Application key:
 
 Your application key (or akey) is a string that you should generate and keep secret from ActiveAuth. It should be 40 characters long and stored alongside your integration key, secret key, integration account and integration server in configuration.
 
@@ -22,7 +22,7 @@ You can generate a random string in Perl with:
 perl -e 'print join "", map { sprintf "%08X", rand(0xffffffff) } 1 .. 5'
 ```
 
-## 2. Sign your request
+### 2. Sign your request
 
 After you perform primary authentication (username and password), you should prepare signature for the secondary authentication process by calling `ActiveAut::sign` method:
 
