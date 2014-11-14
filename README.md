@@ -1,7 +1,7 @@
-ActiveAuth_Perl
+ActiveAuth Perl
 ===============
 
-**ActiveAuth_perl** - two-factor authentication for Perl web applications
+**ActiveAuth Perl** - two-factor authentication for Perl web applications
 
 This package allows a web developer to add ActiveAuths's two-factor authentication to any web login form.
 
