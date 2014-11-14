@@ -8,7 +8,7 @@ This package allows a web developer to add ActiveAuths's two-factor authenticati
 Package:
 
 * `js` - ActiveAuth javascript library, to be hosted by your webserver.
-* `DuoWeb.pm` - ActiveAuth Perl SDK to be integrated with your web application
+* `ActiveAuth.pm` - ActiveAuth Perl SDK to be integrated with your web application
 
 # Usage
 
