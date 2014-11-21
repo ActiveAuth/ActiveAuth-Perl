@@ -12,7 +12,7 @@ Package:
 
 ## Usage
 
-### 0. Befor you start generate application key:
+### 0. Before you start, generate an application key:
 
 Your application key (or akey) is a string that you should generate and keep secret from ActiveAuth. It should be 40 characters long and stored alongside your integration key, secret key, integration account and integration server in configuration. This should be done once.
 
@@ -24,7 +24,7 @@ perl -e 'print join "", map { sprintf "%08X", rand(0xffffffff) } 1 .. 5'
 
 ### 1. Sign your request
 
-After you perform primary authentication (username and password), you should prepare signature for the secondary authentication process by calling `ActiveAut::sign` method:
+After you perform primary authentication (username and password), you should prepare signature for the secondary authentication process by calling `ActiveAuth::sign` method:
 
 ```
 my $secret = ActiveAuth::sign($username, $ikey, $skey, $akey);
@@ -63,7 +63,7 @@ Where:
 
 ### 4. Verify the response
 
-After the user authenticates (e.g. via mobile push, phone call, SMS passcode, etc.) the IFRAME will generate a signed response and send it back to the JavaScript which will POST to `ACAAction` specified in the previous step. Your server-side code should then call `ActiveAuth::verify()` to verify that the signed response is legitimate:
+After the user authenticates (e.g. via mobile push, phone call, SMS passcode, etc.) the IFRAME will generate a signed response and will send it back to the JavaScript. It will make a POST call to `ACAAction`, specified in the previous step. Your server-side code should then call `ActiveAuth::verify()` to verify that the signed response is legitimate:
 
 ```
 my $response = $q->param("2fa-verify");
